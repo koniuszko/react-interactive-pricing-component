@@ -1,0 +1,112 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: #f9faff;
+  background-image: url("../images/bg-pattern.svg");
+  background-repeat: no-repeat;
+}
+
+.wrapper {
+  margin: 20% 0;
+  text-align: center;
+}
+
+.hero {
+  background-image: url(../images/pattern-circles.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50%;
+  width: 320px;
+  height: 145px;
+  padding-top: 32px;
+}
+
+.hero h1 {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.hero p {
+  font-size: 13px;
+  line-height: 23px;
+  font-weight: 600;
+  color: #848ead;
+}
+
+.component_box {
+  width: 325px;
+  height: 478px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 20px 30px -px rgb(127, 137, 185, 0.15);
+  padding: 32px 24px;
+}
+
+.line {
+  content: "";
+  display: block;
+  width: 100%;
+  border-bottom: solid 1px #ecf0fb;
+}
+
+.pageviews {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.71px;
+  color: #848ead;
+}
+
+.price {
+  font-size: 14px;
+  font-weight: 600;
+  color: #848ead;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.big {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  color: #293356;
+}
+
+input[type="range"] {
+  margin: 50px 0;
+  -webkit-appearance: none;
+  width: 280px;
+  height: 8px;
+  background: #ecf0fb;
+  border-radius: 5px;
+  background-image: linear-gradient(#a4f3eb, #a4f3eb);
+  background-size: 50% 100%;
+  background-repeat: no-repeat;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background: #10d8c4;
+  background-image: url(../images/icon-slider.svg);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  cursor: ew-resize;
+  box-shadow: 0 15px 30px 0 #00ffe597;
+  transition: background 0.3s ease-in-out;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
