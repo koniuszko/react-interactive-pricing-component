@@ -12,13 +12,24 @@ class App extends Component {
     price: 16,
     yearlyBilling: true,
     discount: 0.75,
+    width: window.innerWidth,
   };
 
   list = ["Unlimited websites", "100% data ownership", "Email reports"];
 
+  componentWillMount() {
+    window.addEventListener("resize", this.handleWindowSizeChange);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.handleWindowSizeChange);
+  }
+
+  handleWindowSizeChange = () => {
+    this.setState({ width: window.innerWidth });
+  };
+
   sliderHandle = (e) => {
-    let option = e.target.value;
-    switch (option) {
+    switch (e.target.value) {
       case "0":
         this.setState({
           sliderValue: 0,
@@ -82,54 +93,62 @@ class App extends Component {
           <div className="hero">
             <div className="hero_img"></div>
             <h1>Simple, traffic-based pricing</h1>
-            <p>Sign-up for our 30-day trial.</p>
-            <p>No credit card required.</p>
+            <div className="subtitle">
+              <p>Sign-up for our 30-day trial.</p>
+              <p>No credit card required.</p>
+            </div>
           </div>
           <div className="component_box">
-            <p className="pageviews">
-              <span>{this.state.pageViews}</span> pageviews
-            </p>
-            <p className="price">
-              <span className="big">{this.priceCount()}</span>/ month
-            </p>
-            <input
-              value={this.state.sliderValue}
-              onChange={this.sliderHandle}
-              className="slider"
-              type="range"
-              id="range"
-              min="0"
-              max="4"
-              step="1"
-              style={{ backgroundSize: `${this.state.barLength}%, 100%` }}
-            />
-            <div className="radio_wrapper">
-              <p className="billing right">Monthly Billing</p>
-              <BasicSwitch
-                checked={this.state.yearlyBilling}
-                onChange={this.switchChange}
-              />
-              <p className="billing">
-                Yeary Billing
-                <span className="discount">-25%</span>
+            <div className="upper_component">
+              <p className="pageviews">
+                <span>{this.state.pageViews}</span> pageviews
               </p>
+              <p className="price">
+                <span className="big">{this.priceCount()}</span>/ month
+              </p>
+              <input
+                value={this.state.sliderValue}
+                onChange={this.sliderHandle}
+                className="slider"
+                type="range"
+                id="range"
+                min="0"
+                max="4"
+                step="1"
+                style={{ backgroundSize: `${this.state.barLength}%, 100%` }}
+              />
+              <div className="radio_wrapper">
+                <p className="billing right">Monthly Billing</p>
+                <BasicSwitch
+                  checked={this.state.yearlyBilling}
+                  onChange={this.switchChange}
+                />
+                <p className="billing">
+                  Yeary Billing
+                  <span className="discount">
+                    {this.state.width < 1200 ? "-25%" : "25% discount"}
+                  </span>
+                </p>
+              </div>
             </div>
             <span className="line"></span>
-            <div className="button_section">
-              <ul>
-                {this.list.map((item) => {
-                  return (
-                    <li key={item}>
-                      <img
-                        className="icon"
-                        src={checkIcon}
-                        alt="check"
-                      />
-                      <p>{item}</p>
-                    </li>
-                  );
-                })}
-              </ul>
+            <div className="lower_component">
+              <div className="button_section">
+                <ul>
+                  {this.list.map((item) => {
+                    return (
+                      <li key={item}>
+                        <img
+                          className="icon"
+                          src={checkIcon}
+                          alt="check"
+                        />
+                        <p>{item}</p>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
               <button className="start_button">Start my trial</button>
             </div>
           </div>
