@@ -9,19 +9,70 @@ class App extends Component {
     sliderValue: 2,
     barLength: 50,
     pageViews: "100K",
-    price: "$16.00",
+    price: 16,
     yearlyBilling: true,
+    discount: 0.75,
   };
 
+  list = ["Unlimited websites", "100% data ownership", "Email reports"];
+
   sliderHandle = (e) => {
-    this.setState({
-      sliderValue: e.target.value,
-      barLength: (e.target.value * 100) / 4,
-    });
+    let option = e.target.value;
+    switch (option) {
+      case "0":
+        this.setState({
+          sliderValue: 0,
+          barLength: 0,
+          pageViews: "10K",
+          price: 8,
+        });
+        break;
+      case "1":
+        this.setState({
+          sliderValue: 1,
+          barLength: 25,
+          pageViews: "50K",
+          price: 12,
+        });
+        break;
+      case "2":
+        this.setState({
+          sliderValue: 2,
+          barLength: 50,
+          pageViews: "100K",
+          price: 16,
+        });
+        break;
+      case "3":
+        this.setState({
+          sliderValue: 3,
+          barLength: 75,
+          pageViews: "500K",
+          price: 24,
+        });
+        break;
+      case "4":
+        this.setState({
+          sliderValue: 4,
+          barLength: 100,
+          pageViews: "1M",
+          price: 36,
+        });
+        break;
+    }
   };
 
   switchChange = () => {
     this.setState({ yearlyBilling: !this.state.yearlyBilling });
+  };
+
+  priceCount = () => {
+    return this.state.yearlyBilling
+      ? "$" +
+          (
+            Math.round(this.state.price * this.state.discount * 100) / 100
+          ).toFixed(2)
+      : "$" + (Math.round(this.state.price * 100) / 100).toFixed(2);
   };
 
   render() {
@@ -34,13 +85,12 @@ class App extends Component {
             <p>Sign-up for our 30-day trial.</p>
             <p>No credit card required.</p>
           </div>
-
           <div className="component_box">
             <p className="pageviews">
               <span>{this.state.pageViews}</span> pageviews
             </p>
             <p className="price">
-              <span className="big">{this.state.price}</span>/ month
+              <span className="big">{this.priceCount()}</span>/ month
             </p>
             <input
               value={this.state.sliderValue}
@@ -67,30 +117,18 @@ class App extends Component {
             <span className="line"></span>
             <div className="button_section">
               <ul>
-                <li>
-                  <img
-                    className="icon"
-                    src={checkIcon}
-                    alt="check"
-                  />
-                  <p>Unlimited websites</p>
-                </li>
-                <li>
-                  <img
-                    className="icon"
-                    src={checkIcon}
-                    alt="check"
-                  />
-                  <p>100% data ownership</p>
-                </li>
-                <li>
-                  <img
-                    className="icon"
-                    src={checkIcon}
-                    alt="check"
-                  />
-                  <p>Email reports</p>
-                </li>
+                {this.list.map((item) => {
+                  return (
+                    <li key={item}>
+                      <img
+                        className="icon"
+                        src={checkIcon}
+                        alt="check"
+                      />
+                      <p>{item}</p>
+                    </li>
+                  );
+                })}
               </ul>
               <button className="start_button">Start my trial</button>
             </div>

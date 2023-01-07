@@ -16,7 +16,7 @@
 }
 
 .hero {
-  background-image: url(../images/pattern-circles.svg);
+  background-image: url("../images/pattern-circles.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: 50%;
@@ -176,4 +176,5 @@ li p {
   font-weight: 800;
   color: #becdff;
   margin: 32px 0;
+  cursor: pointer;
 }
