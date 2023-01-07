@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import BasicSwitch from "./components/Switch";
 
 import "./style/App.css";
 import checkIcon from "./images/icon-check.svg";
@@ -9,6 +10,7 @@ class App extends Component {
     barLength: 50,
     pageViews: "100K",
     price: "$16.00",
+    yearlyBilling: true,
   };
 
   sliderHandle = (e) => {
@@ -16,7 +18,10 @@ class App extends Component {
       sliderValue: e.target.value,
       barLength: (e.target.value * 100) / 4,
     });
-    // console.log(e.target.value, barLength);
+  };
+
+  switchChange = () => {
+    this.setState({ yearlyBilling: !this.state.yearlyBilling });
   };
 
   render() {
@@ -49,10 +54,14 @@ class App extends Component {
               style={{ backgroundSize: `${this.state.barLength}%, 100%` }}
             />
             <div className="radio_wrapper">
-              <p className="billing">Monthly Billing</p>
-              <div className="radio_checkbox"></div>
+              <p className="billing right">Monthly Billing</p>
+              <BasicSwitch
+                checked={this.state.yearlyBilling}
+                onChange={this.switchChange}
+              />
               <p className="billing">
-                Yeary Billing <span className="discount">25% discount</span>{" "}
+                Yeary Billing
+                <span className="discount">-25%</span>
               </p>
             </div>
             <span className="line"></span>
@@ -60,6 +69,7 @@ class App extends Component {
               <ul>
                 <li>
                   <img
+                    className="icon"
                     src={checkIcon}
                     alt="check"
                   />
@@ -67,6 +77,7 @@ class App extends Component {
                 </li>
                 <li>
                   <img
+                    className="icon"
                     src={checkIcon}
                     alt="check"
                   />
@@ -74,13 +85,14 @@ class App extends Component {
                 </li>
                 <li>
                   <img
+                    className="icon"
                     src={checkIcon}
                     alt="check"
                   />
                   <p>Email reports</p>
                 </li>
               </ul>
-              <button>Start my trial</button>
+              <button className="start_button">Start my trial</button>
             </div>
           </div>
         </div>
