@@ -70,6 +70,13 @@ class App extends Component {
           price: 36,
         });
         break;
+      default:
+        this.setState({
+          sliderValue: 2,
+          barLength: 50,
+          pageViews: "100K",
+          price: 16,
+        });
     }
   };
 
@@ -115,7 +122,9 @@ class App extends Component {
                 min="0"
                 max="4"
                 step="1"
-                style={{ backgroundSize: `${this.state.barLength}%, 100%` }}
+                style={{
+                  backgroundSize: this.state.barLength + "% 100%, 100% 100%",
+                }}
               />
               <div className="radio_wrapper">
                 <p className="billing right">Monthly Billing</p>
